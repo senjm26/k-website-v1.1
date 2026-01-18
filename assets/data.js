@@ -268,7 +268,7 @@ window.SITE_DATA = {
     }
   ],
   "meta": {
-    "updated": "December 2025",
+    "updated": "January 2026",
     "sourceNote": "This site is generated from a CV provided by Kalyan K. Sen (Dec 2025)."
   }
 };
