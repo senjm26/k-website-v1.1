@@ -253,9 +253,16 @@ window.SITE_DATA = {
       ]
     },
     {
-      "area": "Toastmasters",
+      "area": "Awards",
       "items": [
         "District Governor, District 13 (2007\u20132008) \u2013 Select Distinguished District Governor",
+        "IEEE PES Robert Noberini Distinguished Contributions to Engineering Professionalism Award (2026)"
+      ]
+    },
+    {
+      "area": "Toastmasters",
+      "items": [
+        "IEEE PES Distinguished Lecture (2026\u20132027)",
         "Distinguished Toastmaster (2008)"
       ]
     },
