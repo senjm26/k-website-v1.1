@@ -269,10 +269,10 @@ window.SITE_DATA = {
   ],
   "awards": [
     {
-      "name": "Award / Honor Name",
-      "issuer": "Issuing Organization",
-      "year": "20XX",
-      "note": "Optional one-line description of the award or why it was given."
+      "name": "Robert Noberini Distinguished Contributions to Engineering Professionalism Award",
+      "issuer": "IEEE PES",
+      "year": "2026",
+      "note": ""
     },
     {
       "name": "Award / Honor Name",
