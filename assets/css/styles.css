@@ -1,11 +1,3 @@
-/* =========================================================
-   Kalyan K. Sen — profile site
-   Design language: technical/editorial, grounded in power-flow
-   engineering. Paper-grey ground, ink text, single copper-wire
-   accent, IBM Plex for engineering precision, Newsreader italic
-   for the human/academic voice in headlines.
-   ========================================================= */
-
 :root{
   --bg:        #F5F4EF;
   --paper:     #FCFCFA;
@@ -14,10 +6,10 @@
   --ink-faint: #8A9099;
   --line:      #DCDAD0;
   --line-strong: #C7C4B7;
-  --copper:    #B5662B;
-  --copper-deep: #8F4F20;
+  --blue:    #0077b6;
+  --blue-deep: #023e8a;
   --teal:      #1F4B4C;
-  --focus: 2px solid #8F4F20;
+  --focus: 2px solid #023e8a;
 
   --max: 1120px;
   --radius-sm: 6px;

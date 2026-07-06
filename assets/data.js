@@ -267,8 +267,6 @@ window.SITE_DATA = {
       ]
     }
   ],
-  /* PLACEHOLDER \u2014 replace with the real awards/honors list.
-     Each entry: name, issuing organization or context, and year. */
   "awards": [
     {
       "name": "Award / Honor Name",
@@ -296,7 +294,7 @@ window.SITE_DATA = {
     }
   ],
   "meta": {
-    "updated": "January 2026",
-    "sourceNote": "This site is generated from a CV provided by Kalyan K. Sen (Dec 2025)."
+    "updated": "July 2026",
+    "sourceNote": "© 2026 All rights reserved."
   }
 };
