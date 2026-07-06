@@ -41,7 +41,7 @@ window.SITE_DATA = {
       "text": "Co-author of two IEEE Press/Wiley books (2009, 2022) and contributor to peer\u2011reviewed literature and book chapters."
     },
     {
-      "title": "Industry + Academia (33+ years)",
+      "title": "Industry + Academia (40+ years)",
       "text": "Leadership roles at Westinghouse/ABB/Curtiss\u2011Wright/Fluor; academic teaching and research experience."
     },
     {
@@ -60,7 +60,7 @@ window.SITE_DATA = {
     },
     {
       "label": "DL talks & lectures",
-      "value": "225+"
+      "value": "250+"
     },
     {
       "label": "Countries presented",
