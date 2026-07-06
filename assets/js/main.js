@@ -1,8 +1,9 @@
 function icon(name){
   const icons = {
     mail: `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>`,
-    link: `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10.6 13.4a1 1 0 0 1 0-1.4l3.6-3.6a3 3 0 0 1 4.2 4.2l-1.7 1.7a1 1 0 1 1-1.4-1.4l1.7-1.7a1 1 0 1 0-1.4-1.4l-3.6 3.6a1 1 0 0 1-1.4 0ZM13.4 10.6a1 1 0 0 1 0 1.4l-3.6 3.6a3 3 0 1 1-4.2-4.2l1.7-1.7a1 1 0 1 1 1.4 1.4L7.0 12.8a1 1 0 0 0 1.4 1.4l3.6-3.6a1 1 0 0 1 1.4 0Z"/></svg>`,
+    link: `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10.6 13.4a1 1 0 0 1 0-1.4l3.6-3.6a3 3 0 0 1 4.2 4.2l-1.7 1.7a1 1 0 1 1-1.4-1.4l1.7-1.7a1 1 0 1 0-1.4-1.4l-3.6 3.6a1 1 0 0 1-1.4 0ZM13.4 10.6a1 1 0 0 1 0 1.4l-3.6 3.6a3 3 0 1 1-4.2-4.2l1.7-1.7a1 1 0 1 1 1.4 1.4L7 12.8a1 1 0 0 0 1.4 1.4l3.6-3.6a1 1 0 0 1 1.4 0Z"/></svg>`,
     download: `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v8.6l2.3-2.3a1 1 0 1 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L11 12.6V4a1 1 0 0 1 1-1Zm-7 16a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1Z"/></svg>`,
+    award: `<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle cx="12" cy="9" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M9 13.5 7.5 21l4.5-2.4 4.5 2.4-1.5-7.5" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>`,
   };
   return icons[name] || icons.link;
 }
@@ -10,6 +11,13 @@ function icon(name){
 function setText(id, txt){
   const el = document.getElementById(id);
   if(el) el.textContent = txt;
+}
+
+function escapeHtml(str){
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
 }
 
 function buildHighlights(items){
@@ -69,6 +77,39 @@ function buildSimpleList(rootId, items, formatter){
   root.appendChild(ul);
 }
 
+function buildPatents(items){
+  const root = document.getElementById('patentsList');
+  root.innerHTML = '';
+  items.forEach(p => {
+    const row = document.createElement('div');
+    row.className = 'patentRow';
+    row.innerHTML = `
+      <div class="pnum">${p.note}<div class="pyear">${p.year}</div></div>
+      <div class="ptitle">${p.title}</div>
+    `;
+    root.appendChild(row);
+  });
+}
+
+function buildAwards(items){
+  const root = document.getElementById('awardsGrid');
+  if(!root) return;
+  root.innerHTML = '';
+  (items || []).forEach(a => {
+    const div = document.createElement('div');
+    div.className = 'awardCard';
+    div.innerHTML = `
+      <div class="awardIcon">${icon('award')}</div>
+      <div>
+        <h3>${escapeHtml(a.name)}</h3>
+        <div class="issuer">${escapeHtml(a.issuer)}${a.year ? ' · ' + escapeHtml(a.year) : ''}</div>
+        ${a.note ? `<p>${escapeHtml(a.note)}</p>` : ''}
+      </div>
+    `;
+    root.appendChild(div);
+  });
+}
+
 function setupNav(){
   const menuBtn = document.getElementById('menuBtn');
   const navList = document.getElementById('navList');
@@ -123,19 +164,20 @@ function setupNav(){
     linkRow.appendChild(a);
   });
 
-  // CV download buttons
-  document.getElementById('cvPdf').innerHTML = `${icon('download')}<span>Download CV (PDF)</span>`;
-  document.getElementById('cvDocx').innerHTML = `${icon('download')}<span>Download CV (DOCX)</span>`;
+  // CV download button (PDF only)
+  const cvPdf = document.getElementById('cvPdf');
+  if(cvPdf) cvPdf.innerHTML = `${icon('download')}<span>Download CV</span>`;
 
   buildHighlights(data.highlights);
   buildStats(data.stats);
   buildTimeline(data.timeline);
 
-  buildSimpleList('educationList', data.education, (e) => `<strong>${e.degree}</strong> — ${e.school} <span style="color:rgba(255,255,255,0.55)">(${e.year})</span>`);
-  buildSimpleList('booksList', data.books, (b) => `<strong>${b.title}</strong> — ${b.publisher} <span style="color:rgba(255,255,255,0.55)">(${b.year})</span><br><span style="color:rgba(255,255,255,0.70)">ISBN: ${b.isbn}</span>`);
+  buildSimpleList('educationList', data.education, (e) => `<strong>${e.degree}</strong> — ${e.school} <span style="color:var(--ink-faint)">(${e.year})</span>`);
+  buildSimpleList('booksList', data.books, (b) => `<strong>${b.title}</strong> — ${b.publisher} <span style="color:var(--ink-faint)">(${b.year})</span><br><span style="color:var(--ink-soft)">ISBN: ${b.isbn}</span>`);
   buildSimpleList('pubsList', data.selectedPubs, (p) => `${p.citation}`);
-  buildSimpleList('patentsList', data.patents, (p) => `<strong>${p.title}</strong> — ${p.note} <span style="color:rgba(255,255,255,0.55)">(${p.year})</span>`);
-  buildSimpleList('speakingList', data.speaking, (s) => `<strong>${s.title}</strong> — ${s.type} <span style="color:rgba(255,255,255,0.55)">(${s.date})</span>`);
+  buildPatents(data.patents);
+  buildSimpleList('speakingList', data.speaking, (s) => `<strong>${s.title}</strong> — ${s.type} <span style="color:var(--ink-faint)">(${s.date})</span>`);
+  buildAwards(data.awards);
 
   // Service blocks
   const svcRoot = document.getElementById('serviceBlocks');

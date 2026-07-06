@@ -267,6 +267,34 @@ window.SITE_DATA = {
       ]
     }
   ],
+  /* PLACEHOLDER \u2014 replace with the real awards/honors list.
+     Each entry: name, issuing organization or context, and year. */
+  "awards": [
+    {
+      "name": "Award / Honor Name",
+      "issuer": "Issuing Organization",
+      "year": "20XX",
+      "note": "Optional one-line description of the award or why it was given."
+    },
+    {
+      "name": "Award / Honor Name",
+      "issuer": "Issuing Organization",
+      "year": "20XX",
+      "note": "Optional one-line description of the award or why it was given."
+    },
+    {
+      "name": "Award / Honor Name",
+      "issuer": "Issuing Organization",
+      "year": "20XX",
+      "note": "Optional one-line description of the award or why it was given."
+    },
+    {
+      "name": "Award / Honor Name",
+      "issuer": "Issuing Organization",
+      "year": "20XX",
+      "note": "Optional one-line description of the award or why it was given."
+    }
+  ],
   "meta": {
     "updated": "January 2026",
     "sourceNote": "This site is generated from a CV provided by Kalyan K. Sen (Dec 2025)."
