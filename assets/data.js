@@ -275,22 +275,28 @@ window.SITE_DATA = {
       "note": ""
     },
     {
-      "name": "Award / Honor Name",
-      "issuer": "Issuing Organization",
-      "year": "20XX",
-      "note": "Optional one-line description of the award or why it was given."
+      "name": "IEEE Pittsburgh Section Outstanding Volunteer",
+      "issuer": "IEEE Pittsburgh Section",
+      "year": "2023",
+      "note": ""
     },
     {
-      "name": "Award / Honor Name",
-      "issuer": "Issuing Organization",
-      "year": "20XX",
-      "note": "Optional one-line description of the award or why it was given."
+      "name": "Outstanding Volunteer Service Award",
+      "issuer": "IEEE Pittsburgh Section",
+      "year": "2004",
+      "note": "For reviving the local Chapters of Power & Energy Society and Industrial Applications Society from inactivity to world-class performance"
     },
     {
-      "name": "Award / Honor Name",
-      "issuer": "Issuing Organization",
-      "year": "20XX",
-      "note": "Optional one-line description of the award or why it was given."
+      "name": "Outstanding Technical Committee Prize Paper Award Winner",
+      "issuer": "PES",
+      "year": "2001",
+      "note": ""
+    },
+    {
+      "name": "PES Working Group Award",
+      "issuer": "PES",
+      "year": "2000",
+      "note": "Co-Chairman, Task Force in Modeling and Analysis of System Transients Using Digital Programs Working Group (1999-2003)"
     }
   ],
   "meta": {
