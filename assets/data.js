@@ -287,6 +287,12 @@ window.SITE_DATA = {
       "note": "For reviving the local Chapters of Power & Energy Society and Industrial Applications Society from inactivity to world-class performance"
     },
     {
+      "name": "Power & Energy Society Outstanding Engineer Award",
+      "issuer": "IEEE Pittsburgh Section",
+      "year": "2004",
+      "note": ""
+    },
+    {
       "name": "Outstanding Technical Committee Prize Paper Award Winner",
       "issuer": "PES",
       "year": "2001",
