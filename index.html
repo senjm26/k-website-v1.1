@@ -8,11 +8,12 @@
   <meta property="og:title" content="Kalyan K. Sen — Achievements & Profile"/>
   <meta property="og:description" content="Inventor • Power-flow control expert • Educator • IEEE Life Fellow"/>
   <meta property="og:type" content="website"/>
+  <meta name="theme-color" content="#0A1736"/>
   <link rel="icon" href="./assets/img/avatar.svg" type="image/svg+xml"/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,500;1,500;1,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./assets/css/styles.css"/>
   <script type="application/ld+json">
@@ -29,12 +30,10 @@
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
-  <header>
+  <header class="siteHeader">
     <div class="container">
       <div class="nav">
-        <a class="brand" href="#top" aria-label="Home">
-          <span class="name">Kalyan K. Sen </span>
-        </a>
+        <a class="brand" href="#top" aria-label="Kalyan K. Sen, home">Kalyan K. Sen</a>
 
         <button class="menuBtn" id="menuBtn" aria-controls="navList" aria-expanded="false">Menu</button>
 
@@ -42,7 +41,7 @@
           <ul id="navList">
             <li><a href="#about">About</a></li>
             <li><a href="#highlights">Highlights</a></li>
-            <li><a href="#work">Work & impact</a></li>
+            <li><a href="#work">Work &amp; impact</a></li>
             <li><a href="#awards">Awards</a></li>
             <li><a href="#books">Books</a></li>
             <li><a href="#patents">Patents</a></li>
@@ -57,79 +56,66 @@
 
   <main id="main">
     <section class="hero" id="top">
+      <canvas class="flow" id="flow" aria-hidden="true"></canvas>
+
       <div class="container heroGrid">
-
-        <svg class="hero-motif" viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M90 280 L90 120 L70 90 M90 120 L110 90 M75 160 L105 160 M70 200 L110 200" />
-          <path d="M300 280 L300 70 L278 38 M300 70 L322 38 M285 105 L315 105 M280 150 L320 150 M280 195 L320 195" />
-          <path d="M510 280 L510 140 L490 108 M510 140 L530 108 M495 175 L525 175 M490 215 L530 215" />
-          <path d="M90 95 C 170 60, 230 60, 300 75" />
-          <path d="M300 75 C 380 50, 440 95, 510 115" />
-          <path d="M30 250 C 130 200, 200 300, 300 245 C 400 190, 470 300, 580 240" class="draw" />
-        </svg>
-
-        <div>
+        <div class="heroText">
           <h1 id="heroName">Kalyan K. Sen</h1>
-          <div class="subhead">
-            <div><strong id="heroTitle">PhD, PE, MBA</strong></div>
-            <div class="role" id="heroRole"></div>
-            <div class="tagline" id="heroSubtitle"></div>
-          </div>
+          <p class="creds" id="heroTitle">PhD, PE, MBA</p>
+          <p class="role" id="heroRole"></p>
+          <p class="tagline" id="heroSubtitle"></p>
 
           <div class="ctaRow">
             <a class="btn primary" id="emailLink" href="#">
-              <span style="display:inline-flex;gap:9px;align-items:center;">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:15px;height:15px;"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
-                <span id="emailLinkText">senkk@ieee.org</span>
-              </span>
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
+              <span id="emailLinkText">senkk@ieee.org</span>
             </a>
-
             <a class="btn" id="cvPdf" href="./assets/files/KS_CV_2026.pdf" download></a>
           </div>
-
           <div class="ctaRow" id="linkRow" aria-label="Key links"></div>
-
-          <div class="badgeRow" aria-label="Tags">
-            <span class="badge">Sen Transformer</span>
-            <span class="badge">Power systems</span>
-            <span class="badge">Power electronics</span>
-            <span class="badge">FACTS</span>
-            <span class="badge">Power-flow control</span>
-            <span class="badge">IEEE leadership</span>
-          </div>
         </div>
 
-        <aside class="heroSide" aria-label="Profile snapshot">
-          <div class="profile">
-            <img src="./assets/img/kks.jpg" alt="Portrait of Kalyan K. Sen"/>
-            <div>
-              <div class="who">Snapshot</div>
-              <div class="meta">Career at a glance</div>
-            </div>
+        <figure class="portrait">
+          <div class="frame">
+            <img src="./assets/img/kks.jpg" alt="Portrait of Kalyan K. Sen" width="600" height="640"/>
           </div>
-          <div class="statGrid" id="stats"></div>
-        </aside>
+        </figure>
+      </div>
+
+      <div class="container">
+        <dl class="stats" id="stats" aria-label="Career at a glance"></dl>
       </div>
     </section>
 
-    <section id="about">
+    <section class="sec" id="about">
       <div class="container">
-        <div class="sectionHead"><h2 class="sectionTitle">About</h2></div>
-        <p class="sectionLead">
-          Kalyan K. Sen is an inventor, power engineer, and educator whose work focuses on improving
-          electric transmission performance through advanced power-flow control technologies.
-          He has served in senior engineering roles across industry and academia and is an active volunteer leader within IEEE.
-        </p>
-        <div class="grid cols2">
-          <div class="card">
+        <div class="secHead">
+          <h2>About</h2>
+          <p class="lead">
+            Kalyan K. Sen is an inventor, power engineer, and educator whose work focuses on improving
+            electric transmission performance through advanced power-flow control technologies.
+            He has served in senior engineering roles across industry and academia and is an active volunteer leader within IEEE.
+          </p>
+        </div>
+
+        <div class="twoCol">
+          <div class="panel">
             <h3>Core expertise</h3>
-            <ul class="list">
+            <ul class="plain">
               <li>Flexible AC Transmission Systems (FACTS) and transmission power-flow control</li>
               <li>High-power electronics design (concept → prototype → demonstration)</li>
               <li>Teaching, technical writing, and global knowledge transfer</li>
             </ul>
+            <ul class="tags" aria-label="Tags">
+              <li>Sen Transformer</li>
+              <li>Power systems</li>
+              <li>Power electronics</li>
+              <li>FACTS</li>
+              <li>Power-flow control</li>
+              <li>IEEE leadership</li>
+            </ul>
           </div>
-          <div class="card">
+          <div class="panel">
             <h3>Education</h3>
             <div id="educationList"></div>
           </div>
@@ -137,126 +123,147 @@
       </div>
     </section>
 
-    <section id="highlights">
+    <section class="sec alt" id="highlights">
       <div class="container">
-        <div class="sectionHead"><h2 class="sectionTitle">Highlights</h2></div>
-        <p class="sectionLead">
-          A curated overview of signature achievements, recognitions, and impact areas.
-          (See the downloadable CV for a complete record.)
-        </p>
-        <div class="grid cols3" id="highlightsGrid"></div>
+        <div class="secHead">
+          <h2>Highlights</h2>
+          <p class="lead">
+            A curated overview of signature achievements, recognitions, and impact areas.
+            (See the downloadable CV for a complete record.)
+          </p>
+        </div>
+        <div class="bento" id="highlightsGrid"></div>
       </div>
     </section>
 
-    <section id="work">
+    <section class="sec" id="work">
       <div class="container">
-        <div class="sectionHead"><h2 class="sectionTitle">Work & impact</h2></div>
-        <p class="sectionLead">
-          Roles and contributions across start-up leadership, industrial R&amp;D, and academic teaching.
-        </p>
+        <div class="secHead">
+          <h2>Work &amp; impact</h2>
+          <p class="lead">Roles and contributions across start-up leadership, industrial R&amp;D, and academic teaching.</p>
+        </div>
         <div class="timeline" id="timeline"></div>
       </div>
     </section>
 
-    <section id="awards">
+    <section class="sec alt" id="awards">
       <div class="container">
-        <div class="sectionHead"><h2 class="sectionTitle">Awards & honors</h2></div>
-        <p class="sectionLead">
-          Recognition from professional societies and institutions.
-        </p>
-        <div class="grid cols2" id="awardsGrid"></div>
+        <div class="secHead">
+          <h2>Awards &amp; honors</h2>
+          <p class="lead">Recognition from professional societies and institutions.</p>
+        </div>
+        <div class="awards" id="awardsGrid"></div>
       </div>
     </section>
 
-    <section id="books">
+    <section class="sec" id="books">
       <div class="container">
-        <div class="sectionHead"><h2 class="sectionTitle">Books & selected publications</h2></div>
-        <p class="sectionLead">
-          Books published via IEEE Press / Wiley, plus a short list of representative publications.
-          For the full list and citations, see Google Scholar.
-        </p>
-        <div class="grid cols2">
-          <div class="card">
-            <h3>Books</h3>
-            <div id="booksList"></div>
-          </div>
-          <div class="card">
-            <h3>Selected publications</h3>
-            <div id="pubsList"></div>
-            <a class="smallLink" href="https://scholar.google.co.in/citations?user=hRRMDMQAAAAJ&hl=en" target="_blank" rel="noreferrer">View full publications list on Google Scholar →</a>
-          </div>
+        <div class="secHead">
+          <h2>Books &amp; selected publications</h2>
+          <p class="lead">
+            Books published via IEEE Press / Wiley, plus a short list of representative publications.
+            For the full list and citations, see Google Scholar.
+          </p>
+        </div>
+
+        <div class="shelf" id="booksList"></div>
+
+        <figure class="figPanel">
+          <img src="./assets/img/smart%20power%20flow.jpg" alt="Diagram of a transmission network with power plants, transformers, loads, and a SMART Power Flow Controller on a controlled path" loading="lazy"/>
+          <figcaption>
+            <strong>SMART Power Flow Controller</strong>
+            A controller placed on a transmission path steers how much power that path carries between generation and load.
+          </figcaption>
+        </figure>
+
+        <div class="panel pubs">
+          <h3>Selected publications</h3>
+          <div id="pubsList"></div>
+          <a class="textLink" href="https://scholar.google.co.in/citations?user=hRRMDMQAAAAJ&hl=en" target="_blank" rel="noreferrer">View full publications list on Google Scholar</a>
         </div>
       </div>
     </section>
 
-    <section id="patents">
+    <section class="sec alt" id="patents">
       <div class="container">
-        <div class="sectionHead"><h2 class="sectionTitle">Patents</h2></div>
-        <p class="sectionLead">
-          Selected U.S. patents and filings related to power-flow transformers, grid control, and power electronics.
-        </p>
-        <div class="card">
-          <div id="patentsList"></div>
+        <div class="secHead">
+          <h2>Patents</h2>
+          <p class="lead">
+            Selected U.S. patents and filings related to power-flow transformers, grid control, and power electronics.
+          </p>
         </div>
+        <div class="panel flush" id="patentsList"></div>
       </div>
     </section>
 
-    <section id="speaking">
+    <section class="sec" id="speaking">
       <div class="container">
-        <div class="sectionHead"><h2 class="sectionTitle">Teaching & speaking</h2></div>
-        <p class="sectionLead">
-          Representative webinars and teaching activity. (The CV includes a detailed history of lectures and tutorials.)
-        </p>
-        <div class="grid cols2">
-          <div class="card">
+        <div class="secHead">
+          <h2>Teaching &amp; speaking</h2>
+          <p class="lead">
+            Representative webinars and teaching activity. (The CV includes a detailed history of lectures and tutorials.)
+          </p>
+        </div>
+
+        <div class="twoCol wideLeft">
+          <div class="panel">
             <h3>Webinars (selected)</h3>
             <div id="speakingList"></div>
           </div>
-          <div class="card">
+          <div class="panel dark">
             <h3>Distinguished Lecturer activity</h3>
-            <p style="margin:0 0 12px; color:var(--ink-soft); font-size:14px;">
+            <p class="body">
               IEEE PES Distinguished Lecturer (2002–present), with extensive global engagements across universities, industry, and IEEE events.
             </p>
-            <div class="badgeRow">
-              <span class="badge">Power-flow control</span>
-              <span class="badge">FACTS controllers</span>
-              <span class="badge">Modern grid operations</span>
-              <span class="badge">Chapter revitalization</span>
-            </div>
+            <ul class="tags onDark" aria-label="Lecture topics">
+              <li>Power-flow control</li>
+              <li>FACTS controllers</li>
+              <li>Modern grid operations</li>
+              <li>Chapter revitalization</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="leadership">
+    <section class="sec alt" id="leadership">
       <div class="container">
-        <div class="sectionHead"><h2 class="sectionTitle">Leadership & service</h2></div>
-        <p class="sectionLead">
-          Professional society leadership, mentoring, and community service.
-        </p>
-        <div class="grid cols3" id="serviceBlocks"></div>
+        <div class="secHead">
+          <h2>Leadership &amp; service</h2>
+          <p class="lead">Professional society leadership, mentoring, and community service.</p>
+        </div>
+        <div class="service" id="serviceBlocks"></div>
       </div>
     </section>
 
-    <section id="contact">
-      <div class="container">
-        <div class="sectionHead"><h2 class="sectionTitle">Contact</h2></div>
-        <div class="grid cols2">
-          <div class="card">
-            <h3>Get in touch</h3>
-            <p style="margin:0; color:var(--ink-soft); font-size:14px;">
-              Email: <a href="mailto:senkk@ieee.org" style="color:var(--copper-deep)">senkk@ieee.org</a><br/>
-              Website: <a href="https://www.sentransformer.com/" target="_blank" rel="noreferrer" style="color:var(--copper-deep)">sentransformer.com</a>
-            </p>
+    <section class="contact" id="contact">
+      <canvas class="flow" aria-hidden="true"></canvas>
+      <div class="container contactGrid">
+        <div class="contactMain">
+          <h2>Contact</h2>
+          <a class="bigMail" href="mailto:senkk@ieee.org">senkk@ieee.org</a>
+          <div class="contactActions">
+            <a class="btn primary" href="mailto:senkk@ieee.org">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
+              Email Kalyan
+            </a>
+            <a class="btn" href="https://www.sentransformer.com/" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10.6 13.4a1 1 0 0 1 0-1.4l3.6-3.6a3 3 0 0 1 4.2 4.2l-1.7 1.7a1 1 0 1 1-1.4-1.4l1.7-1.7a1 1 0 1 0-1.4-1.4l-3.6 3.6a1 1 0 0 1-1.4 0ZM13.4 10.6a1 1 0 0 1 0 1.4l-3.6 3.6a3 3 0 1 1-4.2-4.2l1.7-1.7a1 1 0 1 1 1.4 1.4L7 12.8a1 1 0 0 0 1.4 1.4l3.6-3.6a1 1 0 0 1 1.4 0Z"/></svg>
+              Visit sentransformer.com
+            </a>
           </div>
         </div>
+
+        <a class="logoCard" href="https://www.sentransformer.com/" target="_blank" rel="noreferrer" aria-label="Sen Engineering Solutions website">
+          <img src="./assets/img/S.png" alt="Sen Engineering Solutions logo" loading="lazy"/>
+          <span>sentransformer.com</span>
+        </a>
       </div>
     </section>
 
     <footer class="footer">
       <div class="container">
-        <div>Last updated: <strong id="updated">January 2026</strong></div>
-        <div id="sourceNote" style="font-family:var(--mono); font-size:11.5px;"></div>
+        <div id="sourceNote"></div>
       </div>
     </footer>
   </main>

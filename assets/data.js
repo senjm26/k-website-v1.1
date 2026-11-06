@@ -150,13 +150,15 @@ window.SITE_DATA = {
       "title": "Power Flow Control Solutions for a Modern Grid using SMART Power Flow Controllers",
       "year": "2022",
       "publisher": "IEEE Press / John Wiley & Sons",
-      "isbn": "978-1-119-82435-0"
+      "isbn": "978-1-119-82435-0",
+      "image": "./assets/img/book2.JPG"
     },
     {
       "title": "Introduction to FACTS Controllers: Theory, Modeling, and Applications",
       "year": "2009",
       "publisher": "IEEE Press / John Wiley & Sons",
-      "isbn": "978-0-470-47875-2"
+      "isbn": "978-0-470-47875-2",
+      "image": "./assets/img/book1.jpg"
     }
   ],
   "selectedPubs": [
