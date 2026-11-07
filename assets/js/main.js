@@ -69,7 +69,7 @@ function buildTimeline(items){
     <div class="what">${t.role}</div>
     <div class="where">${t.org}</div>
     <div class="details">${t.details}</div>
-    ${i === 0 ? '<img class="orgLogo" src="./assets/img/S.png" alt="Sen Engineering Solutions logo" loading="lazy"/>' : ''}
+    ${i === 0 ? '<img class="orgLogo" src="./assets/img/logo.svg" alt="Sen Engineering Solutions logo" loading="lazy"/>' : ''}
   `);
 }
 
@@ -253,6 +253,95 @@ function setupHeader(){
   update();
 }
 
+/* Volunteer gallery: photos open in a viewer, videos play in place. Items drop into the shortest column so the grid stays balanced. */
+function buildVolunteer(items){
+  const root = document.getElementById('volunteerGallery');
+  const dlg = document.getElementById('lightbox');
+  if(!root || !items || !items.length) return;
+
+  function open(it){
+    if(!dlg || typeof dlg.showModal !== 'function'){ window.open(it.src, '_blank', 'noopener'); return; }
+    const img = document.getElementById('lbImg');
+    img.src = it.src;
+    img.alt = it.caption;
+    document.getElementById('lbCap').textContent = it.caption;
+    dlg.showModal();
+  }
+
+  function makeItem(it){
+    const cap = escapeHtml(it.caption);
+    const fig = document.createElement('figure');
+    fig.className = 'vItem';
+    if(it.type === 'video'){
+      fig.innerHTML = `
+        <div class="vMedia" style="--ar:${it.ratio}">
+          <video controls playsinline preload="metadata" src="${it.src}#t=0.1" aria-label="Video: ${cap}"></video>
+        </div>`;
+    }else{
+      fig.innerHTML = `
+        <button type="button" class="vMedia" style="--ar:${it.ratio}" aria-label="Enlarge photo: ${cap}">
+          <img src="${it.src}" alt="${cap}" loading="lazy"/>
+        </button>`;
+      fig.querySelector('button').addEventListener('click', () => open(it));
+    }
+    return fig;
+  }
+
+  const nodes = items.map(makeItem);
+  const heightOf = it => { const [w, h] = it.ratio.split('/').map(Number); return h / w; };
+  const narrow = window.matchMedia('(max-width: 720px)');
+  const medium = window.matchMedia('(max-width: 980px)');
+
+  function layout(){
+    const n = narrow.matches ? 1 : medium.matches ? 2 : 3;
+    root.style.setProperty('--cols', n);
+    root.innerHTML = '';
+    const cols = Array.from({length: n}, () => {
+      const el = document.createElement('div');
+      el.className = 'vCol';
+      root.appendChild(el);
+      return {el, h: 0};
+    });
+    const pick = assign(n);
+    nodes.forEach((node, i) => cols[pick[i]].el.appendChild(node));
+  }
+
+  // Pick the split with the most even column heights, keeping items in their original order within each column.
+  // Small galleries are searched exhaustively; larger ones fall back to "shortest column first".
+  function assign(n){
+    const hs = items.map(heightOf), m = hs.length;
+    if(n === 1) return hs.map(() => 0);
+    if(m > 12){
+      const sums = new Array(n).fill(0);
+      return hs.map(h => { const c = sums.indexOf(Math.min(...sums)); sums[c] += h; return c; });
+    }
+    let best = null, bestSpread = Infinity;
+    const total = Math.pow(n, m - 1);   // the first item stays top-left
+    for(let k = 0; k < total; k++){
+      const pickNow = new Array(m), sums = new Array(n).fill(0);
+      pickNow[0] = 0; sums[0] = hs[0];
+      let x = k;
+      for(let i = 1; i < m; i++){ const c = x % n; x = (x - c) / n; pickNow[i] = c; sums[c] += hs[i]; }
+      const spread = Math.max(...sums) - Math.min(...sums);
+      if(spread < bestSpread){ bestSpread = spread; best = pickNow; }
+    }
+    return best;
+  }
+  layout();
+  narrow.addEventListener('change', layout);
+  medium.addEventListener('change', layout);
+
+  // Only one video plays at a time.
+  root.addEventListener('play', e => {
+    root.querySelectorAll('video').forEach(v => { if(v !== e.target) v.pause(); });
+  }, true);
+
+  if(dlg){
+    document.getElementById('lbClose').addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', e => { if(e.target === dlg) dlg.close(); });
+  }
+}
+
 function setupNav(){
   const menuBtn = document.getElementById('menuBtn');
   const navList = document.getElementById('navList');
@@ -330,6 +419,7 @@ function setupNav(){
   buildSpeaking(data.speaking);
   buildAwards(data.awards);
   buildService(data.service);
+  buildVolunteer(data.volunteer);
 
   // Footer note
   setText('sourceNote', data.meta.sourceNote);

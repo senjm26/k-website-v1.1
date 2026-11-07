@@ -307,6 +307,18 @@ window.SITE_DATA = {
       "note": "Co-Chairman, Task Force in Modeling and Analysis of System Transients Using Digital Programs Working Group (1999-2003)"
     }
   ],
+  "volunteer": [
+    {"type": "video", "src": "./assets/volunteer/handout-courtyard.mp4", "ratio": "16/9", "caption": "Handing out clothes in the courtyard"},
+    {"type": "photo", "src": "./assets/volunteer/clothes-ready.jpg",      "ratio": "1/1",  "caption": "Packaged clothes ready to hand out"},
+    {"type": "video", "src": "./assets/volunteer/handout-women.mp4",      "ratio": "9/16", "caption": "Giving folded clothes to women"},
+    {"type": "photo", "src": "./assets/volunteer/children-mats.jpg",      "ratio": "4/3",  "caption": "Children gathered on mats outside"},
+    {"type": "video", "src": "./assets/volunteer/handout-garment.mp4",    "ratio": "16/9", "caption": "A woman receives a folded garment"},
+    {"type": "photo", "src": "./assets/volunteer/children-veranda.jpg",   "ratio": "3/4",  "caption": "Families waiting along the veranda"},
+    {"type": "video", "src": "./assets/volunteer/handout-elderly.mp4",    "ratio": "16/9", "caption": "An elderly man receives a package"},
+    {"type": "photo", "src": "./assets/volunteer/shared-meal.jpg",        "ratio": "3/4",  "caption": "Serving food at a shared meal"},
+    {"type": "video", "src": "./assets/volunteer/greeting-elder.mp4",     "ratio": "9/16", "caption": "Greeting an elderly woman"},
+    {"type": "photo", "src": "./assets/volunteer/supplies-sack.jpg",      "ratio": "3/4",  "caption": "Preparing a sack of food supplies"}
+  ],
   "meta": {
     "updated": "July 2026",
     "sourceNote": "© 2026 All rights reserved."

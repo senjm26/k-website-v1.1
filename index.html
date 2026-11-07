@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
   <title>Kalyan K. Sen</title>
   <meta name="description" content="Professional profile and achievements of Kalyan K. Sen (PhD, PE, MBA), inventor, power-flow control expert, educator, and IEEE Life Fellow."/>
   <meta property="og:title" content="Kalyan K. Sen — Achievements & Profile"/>
@@ -47,6 +47,7 @@
             <li><a href="#patents">Patents</a></li>
             <li><a href="#speaking">Speaking</a></li>
             <li><a href="#leadership">Leadership</a></li>
+            <li><a href="#volunteer">Volunteering</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
@@ -236,6 +237,19 @@
       </div>
     </section>
 
+    <section class="sec" id="volunteer">
+      <div class="container">
+        <div class="secHead">
+          <h2>Volunteer work</h2>
+          <p class="lead">
+            Giving clothes and meals to people in need. These photos and videos come from volunteer giveaways:
+            packing supplies, serving food, and handing out clothes in person.
+          </p>
+        </div>
+        <div class="vGallery" id="volunteerGallery"></div>
+      </div>
+    </section>
+
     <section class="contact" id="contact">
       <canvas class="flow" aria-hidden="true"></canvas>
       <div class="container contactGrid">
@@ -255,7 +269,7 @@
         </div>
 
         <a class="logoCard" href="https://www.sentransformer.com/" target="_blank" rel="noreferrer" aria-label="Sen Engineering Solutions website">
-          <img src="./assets/img/S.png" alt="Sen Engineering Solutions logo" loading="lazy"/>
+          <img src="./assets/img/logo.svg" alt="Sen Engineering Solutions logo" loading="lazy"/>
           <span>sentransformer.com</span>
         </a>
       </div>
@@ -267,6 +281,14 @@
       </div>
     </footer>
   </main>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+    <button type="button" class="lbClose" id="lbClose" aria-label="Close photo">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <img id="lbImg" alt=""/>
+    <p id="lbCap"></p>
+  </dialog>
 
   <script src="./assets/data.js"></script>
   <script src="./assets/js/main.js"></script>
