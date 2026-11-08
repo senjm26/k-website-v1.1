@@ -444,9 +444,8 @@ function setupNav(){
   // Footer note
   setText('sourceNote', data.meta.sourceNote);
 
-  // The backdrop is decoration: start it once the page has loaded so it never competes with the first paint.
-  if(document.readyState === 'complete') setupFlow();
-  else window.addEventListener('load', setupFlow, {once: true});
+  // Start the backdrop straight away: particles appearing later keep the screen changing and hurt Speed Index.
+  setupFlow();
   setupHeader();
   setupNav();
 })();
