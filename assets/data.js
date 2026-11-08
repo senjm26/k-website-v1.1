@@ -151,14 +151,18 @@ window.SITE_DATA = {
       "year": "2022",
       "publisher": "IEEE Press / John Wiley & Sons",
       "isbn": "978-1-119-82435-0",
-      "image": "./assets/img/book2.JPG"
+      "image": "./assets/img/book2-300.webp",
+      "width": 300,
+      "height": 438
     },
     {
       "title": "Introduction to FACTS Controllers: Theory, Modeling, and Applications",
       "year": "2009",
       "publisher": "IEEE Press / John Wiley & Sons",
       "isbn": "978-0-470-47875-2",
-      "image": "./assets/img/book1.jpg"
+      "image": "./assets/img/book1-300.webp",
+      "width": 300,
+      "height": 477
     }
   ],
   "selectedPubs": [
@@ -308,16 +312,18 @@ window.SITE_DATA = {
     }
   ],
   "volunteer": [
-    {"type": "video", "src": "./assets/volunteer/handout-courtyard.mp4", "ratio": "16/9", "caption": "Handing out clothes in the courtyard"},
-    {"type": "photo", "src": "./assets/volunteer/clothes-ready.jpg",      "ratio": "1/1",  "caption": "Packaged clothes ready to hand out"},
-    {"type": "video", "src": "./assets/volunteer/handout-women.mp4",      "ratio": "9/16", "caption": "Giving folded clothes to women"},
-    {"type": "photo", "src": "./assets/volunteer/children-mats.jpg",      "ratio": "4/3",  "caption": "Children gathered on mats outside"},
-    {"type": "video", "src": "./assets/volunteer/handout-garment.mp4",    "ratio": "16/9", "caption": "A woman receives a folded garment"},
-    {"type": "photo", "src": "./assets/volunteer/children-veranda.jpg",   "ratio": "3/4",  "caption": "Families waiting along the veranda"},
-    {"type": "video", "src": "./assets/volunteer/handout-elderly.mp4",    "ratio": "16/9", "caption": "An elderly man receives a package"},
-    {"type": "photo", "src": "./assets/volunteer/shared-meal.jpg",        "ratio": "3/4",  "caption": "Serving food at a shared meal"},
-    {"type": "video", "src": "./assets/volunteer/greeting-elder.mp4",     "ratio": "9/16", "caption": "Greeting an elderly woman"},
-    {"type": "photo", "src": "./assets/volunteer/supplies-sack.jpg",      "ratio": "3/4",  "caption": "Preparing a sack of food supplies"}
+    /* Photos: "src" is the full-size image for the viewer; "thumb"/"srcset" are the smaller grid versions.
+       Videos: "poster" is the still shown until play is pressed (the video itself only downloads on play). */
+    {"type": "video", "src": "./assets/volunteer/handout-courtyard.mp4", "poster": "./assets/volunteer/handout-courtyard-poster.webp", "ratio": "16/9", "caption": "Handing out clothes in the courtyard"},
+    {"type": "photo", "src": "./assets/volunteer/clothes-ready.jpg",      "thumb": "./assets/volunteer/clothes-ready-800.webp",    "srcset": "./assets/volunteer/clothes-ready-480.webp 480w, ./assets/volunteer/clothes-ready-800.webp 800w",       "ratio": "1/1",  "caption": "Packaged clothes ready to hand out"},
+    {"type": "video", "src": "./assets/volunteer/handout-women.mp4",      "poster": "./assets/volunteer/handout-women-poster.webp",     "ratio": "9/16", "caption": "Giving folded clothes to women"},
+    {"type": "photo", "src": "./assets/volunteer/children-mats.jpg",      "thumb": "./assets/volunteer/children-mats-800.webp",    "srcset": "./assets/volunteer/children-mats-480.webp 480w, ./assets/volunteer/children-mats-800.webp 800w",       "ratio": "4/3",  "caption": "Children gathered on mats outside"},
+    {"type": "video", "src": "./assets/volunteer/handout-garment.mp4",    "poster": "./assets/volunteer/handout-garment-poster.webp",   "ratio": "16/9", "caption": "A woman receives a folded garment"},
+    {"type": "photo", "src": "./assets/volunteer/children-veranda.jpg",   "thumb": "./assets/volunteer/children-veranda-800.webp", "srcset": "./assets/volunteer/children-veranda-480.webp 480w, ./assets/volunteer/children-veranda-800.webp 800w", "ratio": "3/4",  "caption": "Families waiting along the veranda"},
+    {"type": "video", "src": "./assets/volunteer/handout-elderly.mp4",    "poster": "./assets/volunteer/handout-elderly-poster.webp",   "ratio": "16/9", "caption": "An elderly man receives a package"},
+    {"type": "photo", "src": "./assets/volunteer/shared-meal.jpg",        "thumb": "./assets/volunteer/shared-meal-800.webp",      "srcset": "./assets/volunteer/shared-meal-480.webp 480w, ./assets/volunteer/shared-meal-800.webp 800w",           "ratio": "3/4",  "caption": "Serving food at a shared meal"},
+    {"type": "video", "src": "./assets/volunteer/greeting-elder.mp4",     "poster": "./assets/volunteer/greeting-elder-poster.webp",    "ratio": "9/16", "caption": "Greeting an elderly woman"},
+    {"type": "photo", "src": "./assets/volunteer/supplies-sack.jpg",      "thumb": "./assets/volunteer/supplies-sack-800.webp",    "srcset": "./assets/volunteer/supplies-sack-480.webp 480w, ./assets/volunteer/supplies-sack-800.webp 800w",       "ratio": "3/4",  "caption": "Preparing a sack of food supplies"}
   ],
   "meta": {
     "updated": "July 2026",

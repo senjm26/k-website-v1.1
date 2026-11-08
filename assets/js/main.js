@@ -47,14 +47,14 @@ function buildHighlights(items){
     (h, i) => {
       const body = `
         <div class="ico">${icon(HIGHLIGHT_ICONS[i % HIGHLIGHT_ICONS.length])}</div>
-        <h4>${h.title}</h4>
+        <h3>${h.title}</h3>
         <p>${h.text.split('/').join('/<wbr>')}</p>
         ${h.linkUrl ? `<a class="textLink" href="${h.linkUrl}" target="_blank" rel="noreferrer">${h.linkLabel || 'Learn more'}</a>` : ''}
       `;
       if(i !== 0) return body;
       return `
         <div class="tileText">${body}</div>
-        <div class="shot"><img src="./assets/img/sentransformer.jpg" alt="A Sen Transformer unit with cooling radiators, bushings, and control cabinet" loading="lazy"/></div>
+        <div class="shot"><img src="./assets/img/sentransformer-800.webp" srcset="./assets/img/sentransformer-400.webp 400w, ./assets/img/sentransformer-800.webp 800w" sizes="(max-width: 720px) calc(100vw - 92px), 380px" width="800" height="880" alt="A Sen Transformer unit with cooling radiators, bushings, and control cabinet" loading="lazy"/></div>
       `;
     });
 }
@@ -69,7 +69,7 @@ function buildTimeline(items){
     <div class="what">${t.role}</div>
     <div class="where">${t.org}</div>
     <div class="details">${t.details}</div>
-    ${i === 0 ? '<img class="orgLogo" src="./assets/img/logo.svg" alt="Sen Engineering Solutions logo" loading="lazy"/>' : ''}
+    ${i === 0 ? '<img class="orgLogo" src="./assets/img/logo.svg" alt="Sen Engineering Solutions logo" width="513" height="327" loading="lazy"/>' : ''}
   `);
 }
 
@@ -82,7 +82,7 @@ function buildEducation(items){
 
 function buildBooks(items){
   fill('booksList', items, 'book', (b) => `
-    ${b.image ? `<img class="bookImg" src="${b.image}" alt="Cover of ${escapeHtml(b.title)}" loading="lazy"/>` : ''}
+    ${b.image ? `<img class="bookImg" src="${b.image}" alt="Cover of ${escapeHtml(b.title)}" width="${b.width}" height="${b.height}" loading="lazy"/>` : ''}
     <div>
       <div class="bt">${b.title}</div>
       <div class="bm">${b.publisher}, <span>${b.year}</span><br>ISBN <span>${b.isbn}</span></div>
@@ -109,7 +109,7 @@ function buildSpeaking(items){
 function buildAwards(items){
   fill('awardsGrid', items, i => 'award' + (i === 0 ? ' feature' : ''), a => `
     <div class="yr">${a.year ? escapeHtml(a.year) : ''}</div>
-    <h4>${escapeHtml(a.name)}</h4>
+    <h3>${escapeHtml(a.name)}</h3>
     <div class="issuer">${escapeHtml(a.issuer)}</div>
     ${a.note ? `<p>${escapeHtml(a.note)}</p>` : ''}
   `);
@@ -157,10 +157,9 @@ function initFlow(canvas){
     return p;
   }
 
-  function resize(){
-    const r = canvas.getBoundingClientRect();
+  function resize(width, height){
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    w = r.width; h = r.height;
+    w = width; h = height;
     canvas.width = Math.round(w * dpr);
     canvas.height = Math.round(h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -230,9 +229,14 @@ function initFlow(canvas){
   function start(){ if(!raf){ last = 0; raf = requestAnimationFrame(loop); } }
   function stop(){ cancelAnimationFrame(raf); raf = 0; }
 
-  resize();
-  let rt;
-  window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(resize, 150); });
+  // ResizeObserver reports the size after layout, so reading it never forces a reflow during page load.
+  let rt, sized = false;
+  new ResizeObserver(entries => {
+    const {width, height} = entries[0].contentRect;
+    clearTimeout(rt);
+    if(!sized){ sized = true; resize(width, height); }
+    else rt = setTimeout(() => resize(width, height), 150);
+  }).observe(canvas);
 
   if('IntersectionObserver' in window){
     new IntersectionObserver(entries => { entries[0].isIntersecting ? start() : stop(); }).observe(canvas);
@@ -251,6 +255,21 @@ function setupHeader(){
   window.addEventListener('scroll', update, {passive: true});
   window.addEventListener('resize', update);
   update();
+}
+
+// Browsers fetch a video's poster straight away, so only set it once the video is close to the viewport.
+const posterObserver = 'IntersectionObserver' in window && new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(!e.isIntersecting) return;
+    e.target.poster = e.target.dataset.poster;
+    posterObserver.unobserve(e.target);
+  });
+}, {rootMargin: '600px 0px'});
+
+function lazyPoster(video, src){
+  if(!posterObserver){ video.poster = src; return; }
+  video.dataset.poster = src;
+  posterObserver.observe(video);
 }
 
 /* Volunteer gallery: photos open in a viewer, videos play in place. Items drop into the shortest column so the grid stays balanced. */
@@ -275,12 +294,13 @@ function buildVolunteer(items){
     if(it.type === 'video'){
       fig.innerHTML = `
         <div class="vMedia" style="--ar:${it.ratio}">
-          <video controls playsinline preload="metadata" src="${it.src}#t=0.1" aria-label="Video: ${cap}"></video>
+          <video controls playsinline preload="none" src="${it.src}" aria-label="Video: ${cap}"></video>
         </div>`;
+      if(it.poster) lazyPoster(fig.querySelector('video'), it.poster);
     }else{
       fig.innerHTML = `
         <button type="button" class="vMedia" style="--ar:${it.ratio}" aria-label="Enlarge photo: ${cap}">
-          <img src="${it.src}" alt="${cap}" loading="lazy"/>
+          <img src="${it.thumb || it.src}"${it.srcset ? ` srcset="${it.srcset}"` : ''} sizes="(max-width: 720px) 100vw, (max-width: 980px) 50vw, 360px" alt="${cap}" loading="lazy"/>
         </button>`;
       fig.querySelector('button').addEventListener('click', () => open(it));
     }
@@ -424,7 +444,9 @@ function setupNav(){
   // Footer note
   setText('sourceNote', data.meta.sourceNote);
 
-  setupFlow();
+  // The backdrop is decoration: start it once the page has loaded so it never competes with the first paint.
+  if(document.readyState === 'complete') setupFlow();
+  else window.addEventListener('load', setupFlow, {once: true});
   setupHeader();
   setupNav();
 })();

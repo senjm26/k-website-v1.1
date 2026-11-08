@@ -11,10 +11,8 @@
   <meta name="theme-color" content="#0A1736"/>
   <link rel="icon" href="./assets/img/avatar.svg" type="image/svg+xml"/>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400&display=swap" rel="stylesheet">
-
+  <link rel="preload" href="./assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="./assets/css/styles.css"/>
   <script type="application/ld+json">
   {
@@ -63,28 +61,41 @@
         <div class="heroText">
           <h1 id="heroName">Kalyan K. Sen</h1>
           <p class="creds" id="heroTitle">PhD, PE, MBA</p>
-          <p class="role" id="heroRole"></p>
-          <p class="tagline" id="heroSubtitle"></p>
+          <!-- The hero is written out here (and refreshed from data.js) so the page doesn't jump when the script runs. -->
+          <p class="role" id="heroRole">President &amp; Chief Technology Officer, Sen Engineering Solutions, Inc.</p>
+          <p class="tagline" id="heroSubtitle">Inventor • Power-flow control expert • Educator • IEEE volunteer leader</p>
 
           <div class="ctaRow">
-            <a class="btn primary" id="emailLink" href="#">
+            <a class="btn primary" id="emailLink" href="mailto:senkk@ieee.org">
               <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
               <span id="emailLinkText">senkk@ieee.org</span>
             </a>
-            <a class="btn" id="cvPdf" href="./assets/files/KS_CV_2026.pdf" download></a>
+            <a class="btn" id="cvPdf" href="./assets/files/KS_CV_2026.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v8.6l2.3-2.3a1 1 0 1 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L11 12.6V4a1 1 0 0 1 1-1Zm-7 16a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1Z"/></svg><span>Download CV</span></a>
           </div>
-          <div class="ctaRow" id="linkRow" aria-label="Key links"></div>
+          <div class="ctaRow" id="linkRow" aria-label="Key links">
+            <a class="btn" href="https://www.sentransformer.com/" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10.6 13.4a1 1 0 0 1 0-1.4l3.6-3.6a3 3 0 0 1 4.2 4.2l-1.7 1.7a1 1 0 1 1-1.4-1.4l1.7-1.7a1 1 0 1 0-1.4-1.4l-3.6 3.6a1 1 0 0 1-1.4 0ZM13.4 10.6a1 1 0 0 1 0 1.4l-3.6 3.6a3 3 0 1 1-4.2-4.2l1.7-1.7a1 1 0 1 1 1.4 1.4L7 12.8a1 1 0 0 0 1.4 1.4l3.6-3.6a1 1 0 0 1 1.4 0Z"/></svg><span>Sen Engineering Solutions</span></a>
+            <a class="btn" href="https://www.nypa.gov/news/press-releases/2021/20211028-transformer" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10.6 13.4a1 1 0 0 1 0-1.4l3.6-3.6a3 3 0 0 1 4.2 4.2l-1.7 1.7a1 1 0 1 1-1.4-1.4l1.7-1.7a1 1 0 1 0-1.4-1.4l-3.6 3.6a1 1 0 0 1-1.4 0ZM13.4 10.6a1 1 0 0 1 0 1.4l-3.6 3.6a3 3 0 1 1-4.2-4.2l1.7-1.7a1 1 0 1 1 1.4 1.4L7 12.8a1 1 0 0 0 1.4 1.4l3.6-3.6a1 1 0 0 1 1.4 0Z"/></svg><span>NYPA press release</span></a>
+            <a class="btn" href="https://scholar.google.co.in/citations?user=hRRMDMQAAAAJ&amp;hl=en" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10.6 13.4a1 1 0 0 1 0-1.4l3.6-3.6a3 3 0 0 1 4.2 4.2l-1.7 1.7a1 1 0 1 1-1.4-1.4l1.7-1.7a1 1 0 1 0-1.4-1.4l-3.6 3.6a1 1 0 0 1-1.4 0ZM13.4 10.6a1 1 0 0 1 0 1.4l-3.6 3.6a3 3 0 1 1-4.2-4.2l1.7-1.7a1 1 0 1 1 1.4 1.4L7 12.8a1 1 0 0 0 1.4 1.4l3.6-3.6a1 1 0 0 1 1.4 0Z"/></svg><span>Google Scholar</span></a>
+          </div>
         </div>
 
         <figure class="portrait">
           <div class="frame">
-            <img src="./assets/img/kks.jpg" alt="Portrait of Kalyan K. Sen" width="600" height="640"/>
+            <img src="./assets/img/kks-680.webp"
+                 srcset="./assets/img/kks-300.webp 300w, ./assets/img/kks-680.webp 680w"
+                 sizes="(max-width: 720px) 124px, (max-width: 980px) 150px, 340px"
+                 alt="Portrait of Kalyan K. Sen" width="680" height="850" fetchpriority="high"/>
           </div>
         </figure>
       </div>
 
       <div class="container">
-        <dl class="stats" id="stats" aria-label="Career at a glance"></dl>
+        <dl class="stats" id="stats" aria-label="Career at a glance">
+          <div class="stat"><dt>Books (IEEE Press/Wiley)</dt><dd>2</dd></div>
+          <div class="stat"><dt>U.S. Patents (selected)</dt><dd>9</dd></div>
+          <div class="stat"><dt>DL talks &amp; lectures</dt><dd>250+</dd></div>
+          <div class="stat"><dt>Countries presented</dt><dd>20</dd></div>
+        </dl>
       </div>
     </section>
 
@@ -170,7 +181,10 @@
         <div class="shelf" id="booksList"></div>
 
         <figure class="figPanel">
-          <img src="./assets/img/smart%20power%20flow.jpg" alt="Diagram of a transmission network with power plants, transformers, loads, and a SMART Power Flow Controller on a controlled path" loading="lazy"/>
+          <img src="./assets/img/smart-power-flow.webp"
+               srcset="./assets/img/smart-power-flow-600.webp 600w, ./assets/img/smart-power-flow.webp 929w"
+               sizes="(max-width: 980px) calc(100vw - 72px), 640px"
+               alt="Diagram of a transmission network with power plants, transformers, loads, and a SMART Power Flow Controller on a controlled path" width="929" height="585" loading="lazy"/>
           <figcaption>
             <strong>SMART Power Flow Controller</strong>
             A controller placed on a transmission path steers how much power that path carries between generation and load.
@@ -268,8 +282,8 @@
           </div>
         </div>
 
-        <a class="logoCard" href="https://www.sentransformer.com/" target="_blank" rel="noreferrer" aria-label="Sen Engineering Solutions website">
-          <img src="./assets/img/logo.svg" alt="Sen Engineering Solutions logo" loading="lazy"/>
+        <a class="logoCard" href="https://www.sentransformer.com/" target="_blank" rel="noreferrer">
+          <img src="./assets/img/logo.svg" alt="Sen Engineering Solutions" width="513" height="327" loading="lazy"/>
           <span>sentransformer.com</span>
         </a>
       </div>

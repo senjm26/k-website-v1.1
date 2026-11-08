@@ -1,3 +1,17 @@
+/* Self-hosted (latin subset) so no third-party stylesheet blocks the first paint. */
+@font-face{
+  font-family:"Bricolage Grotesque"; font-style:normal; font-weight:400 800; font-display:swap;
+  src:url(../fonts/bricolage-grotesque-latin.woff2) format("woff2");
+}
+@font-face{
+  font-family:"Source Serif 4"; font-style:normal; font-weight:400 600; font-display:swap;
+  src:url(../fonts/source-serif-4-latin.woff2) format("woff2");
+}
+@font-face{
+  font-family:"Source Serif 4"; font-style:italic; font-weight:400; font-display:swap;
+  src:url(../fonts/source-serif-4-italic-latin.woff2) format("woff2");
+}
+
 :root{
   --navy:      #0A1736;
   --navy-2:    #102A78;
@@ -209,14 +223,14 @@ h3{margin:0 0 14px; font-family:var(--sans); font-weight:650; font-size:18px; le
   background:var(--blue); color:#fff;
 }
 .tile .ico svg{width:24px; height:24px}
-.tile h4{margin:0 0 8px; font-family:var(--sans); font-weight:650; font-size:21px; line-height:1.2; letter-spacing:-0.02em;}
+.tile h3{margin:0 0 8px; font-family:var(--sans); font-weight:650; font-size:21px; line-height:1.2; letter-spacing:-0.02em;}
 .tile p{margin:0; color:var(--slate); font-size:16.5px;}
 .tile .textLink{margin-top:auto; padding-top:16px; font-size:14.5px;}
 .tile.feature{
   background:linear-gradient(150deg, var(--navy), var(--navy-2)); border-color:transparent; color:#fff;
 }
 .tile.feature .ico{background:var(--amber); color:var(--navy)}
-.tile.feature h4{color:#fff; font-size:28px}
+.tile.feature h3{color:#fff; font-size:28px}
 .tile.feature p{color:var(--on-navy); font-size:18px; max-width:30em}
 .tile.feature .textLink{color:var(--amber)}
 .tile.feature{grid-column:1 / -1; flex-direction:row; align-items:stretch; gap:40px; padding:36px;}
@@ -226,7 +240,7 @@ h3{margin:0 0 14px; font-family:var(--sans); font-weight:650; font-size:18px; le
   flex:0 0 38%; display:grid; place-items:center; padding:14px; border-radius:14px; background:#fff;
   box-shadow:0 20px 40px -20px rgba(0,0,0,.55);
 }
-.tile.feature .shot img{display:block; width:100%; max-height:330px; object-fit:contain;}
+.tile.feature .shot img{display:block; width:100%; height:auto; max-height:330px; object-fit:contain;}
 
 /* Timeline */
 .timeline{position:relative; max-width:900px; padding-left:34px;}
@@ -261,7 +275,7 @@ h3{margin:0 0 14px; font-family:var(--sans); font-weight:650; font-size:18px; le
   font-family:var(--sans); font-weight:700; font-size:44px; line-height:1; letter-spacing:-0.04em;
   font-variant-numeric:tabular-nums; color:var(--blue);
 }
-.award h4{margin:16px 0 0; font-family:var(--sans); font-weight:650; font-size:19px; line-height:1.3; letter-spacing:-0.01em;}
+.award h3{margin:16px 0 0; font-family:var(--sans); font-weight:650; font-size:19px; line-height:1.3; letter-spacing:-0.01em;}
 .award .issuer{color:var(--slate); font-size:16px; margin-top:4px;}
 .award p{margin:10px 0 0; color:var(--slate); font-size:15.5px;}
 .award:last-child:nth-child(even){grid-column:span 2;}
@@ -269,7 +283,7 @@ h3{margin:0 0 14px; font-family:var(--sans); font-weight:650; font-size:18px; le
   grid-column:span 2; background:linear-gradient(150deg, var(--navy), var(--navy-2)); border-color:transparent; color:#fff;
 }
 .award.feature .yr{color:var(--amber); font-size:56px}
-.award.feature h4{color:#fff; font-size:26px; max-width:24em}
+.award.feature h3{color:#fff; font-size:26px; max-width:24em}
 .award.feature .issuer{color:var(--on-navy-dim)}
 
 /* Books */
@@ -306,7 +320,7 @@ h3{margin:0 0 14px; font-family:var(--sans); font-weight:650; font-size:18px; le
 .talk:last-child{padding-bottom:0}
 .talk .td{font-family:var(--sans); font-size:13.5px; font-weight:600; color:var(--blue-deep); font-variant-numeric:tabular-nums;}
 .talk .tt{font-family:var(--sans); font-weight:600; font-size:18px; line-height:1.3; margin-top:2px; letter-spacing:-0.01em;}
-.talk .ty{color:var(--faint); font-size:15px;}
+.talk .ty{color:var(--slate); font-size:15px;}
 
 /* Service */
 .service{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
@@ -405,11 +419,11 @@ h3{margin:0 0 14px; font-family:var(--sans); font-weight:650; font-size:18px; le
   .tile.feature{flex-direction:column; padding:26px; gap:24px}
   .tile.feature .tileText{flex:none; width:100%}
   .tile.feature .shot{flex:none; width:100%}
-  .tile.feature h4{font-size:24px}
+  .tile.feature h3{font-size:24px}
   .tile{padding:24px}
   .award{padding:22px}
   .award.feature .yr{font-size:46px}
-  .award.feature h4{font-size:22px}
+  .award.feature h3{font-size:22px}
   .svc{padding:24px}
   .job .what{font-size:20px}
   .patent .pt{font-size:16.5px}
