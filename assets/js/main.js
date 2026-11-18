@@ -272,9 +272,28 @@ function lazyPoster(video, src){
   posterObserver.observe(video);
 }
 
-/* Volunteer gallery: photos open in a viewer, videos play in place. Items drop into the shortest column so the grid stays balanced. */
-function buildVolunteer(items){
-  const root = document.getElementById('volunteerGallery');
+/* Philanthropy: one heading and gallery per year, newest first. Years with nothing in them yet are skipped. */
+function buildPhilanthropy(years){
+  const wrap = document.getElementById('philanthropyYears');
+  if(!wrap) return;
+  wrap.innerHTML = '';
+  (years || []).filter(y => y.items && y.items.length).forEach(y => {
+    const block = document.createElement('div');
+    block.className = 'pYear';
+    block.innerHTML = `<h3 class="pYearHead">${escapeHtml(y.year)}</h3><div class="vGallery"></div>`;
+    wrap.appendChild(block);
+    buildGallery(block.querySelector('.vGallery'), y.items);
+  });
+
+  const dlg = document.getElementById('lightbox');
+  if(dlg){
+    document.getElementById('lbClose').addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', e => { if(e.target === dlg) dlg.close(); });
+  }
+}
+
+/* One year's gallery: photos open in a viewer, videos play in place. Items drop into the shortest column so the grid stays balanced. */
+function buildGallery(root, items){
   const dlg = document.getElementById('lightbox');
   if(!root || !items || !items.length) return;
 
@@ -351,15 +370,31 @@ function buildVolunteer(items){
   narrow.addEventListener('change', layout);
   medium.addEventListener('change', layout);
 
-  // Only one video plays at a time.
+  // Only one video plays at a time, across every year's gallery.
   root.addEventListener('play', e => {
-    root.querySelectorAll('video').forEach(v => { if(v !== e.target) v.pause(); });
+    document.querySelectorAll('.vGallery video').forEach(v => { if(v !== e.target) v.pause(); });
   }, true);
+}
 
-  if(dlg){
-    document.getElementById('lbClose').addEventListener('click', () => dlg.close());
-    dlg.addEventListener('click', e => { if(e.target === dlg) dlg.close(); });
-  }
+/* Blocks below the fold fade up as they scroll into view. Anything already on screen is left alone,
+   so the first paint never changes. Skipped entirely for visitors who ask for reduced motion. */
+function setupReveal(){
+  if(!('IntersectionObserver' in window)) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const seen = new WeakSet();
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        obs.unobserve(e.target);
+      }else if(!seen.has(e.target)){
+        e.target.classList.add('reveal');
+      }
+      seen.add(e.target);
+    });
+  }, {rootMargin: '0px 0px -6% 0px'});
+  document.querySelectorAll('.secHead, .twoCol > *, .tile, .job, .award, .book, .figPanel, .pubs, .patent, .svc, .pYearHead, .vGallery, .contactMain, .logoCard')
+    .forEach(el => obs.observe(el));
 }
 
 function setupNav(){
@@ -417,11 +452,11 @@ function setupNav(){
   linkRow.innerHTML = '';
   data.person.links.forEach(l => {
     const a = document.createElement('a');
-    a.className = 'btn';
+    a.className = 'quietLink';
     a.href = l.url;
     a.target = '_blank';
     a.rel = 'noreferrer';
-    a.innerHTML = `${icon('link')}<span>${l.label}</span>`;
+    a.innerHTML = `<span>${l.label}</span>`;
     linkRow.appendChild(a);
   });
 
@@ -439,7 +474,7 @@ function setupNav(){
   buildSpeaking(data.speaking);
   buildAwards(data.awards);
   buildService(data.service);
-  buildVolunteer(data.volunteer);
+  buildPhilanthropy(data.philanthropy);
 
   // Footer note
   setText('sourceNote', data.meta.sourceNote);
@@ -448,4 +483,5 @@ function setupNav(){
   setupFlow();
   setupHeader();
   setupNav();
+  setupReveal();
 })();

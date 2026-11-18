@@ -5,7 +5,7 @@ window.SITE_DATA = {
     "postnominals": "PhD, PE, MBA",
     "title": "President & Chief Technology Officer, Sen Engineering Solutions, Inc.",
     "subtitle": "Inventor \u2022 Power-flow control expert \u2022 Educator \u2022 IEEE volunteer leader",
-    "email": "senkk@ieee.org",
+    "email": "senkk@sentransformer.com",
     "links": [
       {
         "label": "Sen Engineering Solutions",
@@ -311,9 +311,13 @@ window.SITE_DATA = {
       "note": "Co-Chairman, Task Force in Modeling and Analysis of System Transients Using Digital Programs Working Group (1999-2003)"
     }
   ],
-  "volunteer": [
-    /* Photos: "src" is the full-size image for the viewer; "thumb"/"srcset" are the smaller grid versions.
+  "philanthropy": [
+    /* One entry per year, newest first. A year with an empty "items" list is hidden until something is added.
+       Photos: "src" is the full-size image for the viewer; "thumb"/"srcset" are the smaller grid versions.
        Videos: "poster" is the still shown until play is pressed (the video itself only downloads on play). */
+    {
+      "year": "2026",
+      "items": [
     {"type": "video", "src": "./assets/volunteer/handout-courtyard.mp4", "poster": "./assets/volunteer/handout-courtyard-poster.webp", "ratio": "16/9", "caption": "Handing out clothes in the courtyard"},
     {"type": "photo", "src": "./assets/volunteer/clothes-ready.jpg",      "thumb": "./assets/volunteer/clothes-ready-800.webp",    "srcset": "./assets/volunteer/clothes-ready-480.webp 480w, ./assets/volunteer/clothes-ready-800.webp 800w",       "ratio": "1/1",  "caption": "Packaged clothes ready to hand out"},
     {"type": "video", "src": "./assets/volunteer/handout-women.mp4",      "poster": "./assets/volunteer/handout-women-poster.webp",     "ratio": "9/16", "caption": "Giving folded clothes to women"},
@@ -324,6 +328,14 @@ window.SITE_DATA = {
     {"type": "photo", "src": "./assets/volunteer/shared-meal.jpg",        "thumb": "./assets/volunteer/shared-meal-800.webp",      "srcset": "./assets/volunteer/shared-meal-480.webp 480w, ./assets/volunteer/shared-meal-800.webp 800w",           "ratio": "3/4",  "caption": "Serving food at a shared meal"},
     {"type": "video", "src": "./assets/volunteer/greeting-elder.mp4",     "poster": "./assets/volunteer/greeting-elder-poster.webp",    "ratio": "9/16", "caption": "Greeting an elderly woman"},
     {"type": "photo", "src": "./assets/volunteer/supplies-sack.jpg",      "thumb": "./assets/volunteer/supplies-sack-800.webp",    "srcset": "./assets/volunteer/supplies-sack-480.webp 480w, ./assets/volunteer/supplies-sack-800.webp 800w",       "ratio": "3/4",  "caption": "Preparing a sack of food supplies"}
+      ]
+    },
+    {
+      "year": "2025",
+      "items": [
+        /* Add 2025 photos and videos here, in the same format as 2026 above. */
+      ]
+    }
   ],
   "meta": {
     "updated": "July 2026",
